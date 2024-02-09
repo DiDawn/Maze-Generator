@@ -3,48 +3,6 @@ from config import *
 from maze import Maze
 
 
-WINDOW_WIDTH = 1920//2
-WINDOW_HEIGHT = 1080//2
-CELL_SIZE = 96       # cell width/height in pixels in tilesheet
-SCALE_FACTOR = 0.5
-CELL_SIZE_SCALED = CELL_SIZE * SCALE_FACTOR
-
-PathNSEW = 0
-PathNSE = 1
-PathNSW = 2
-PathNS = 3
-PathNEW = 4
-PathNE = 5
-PathNW = 6
-PathN = 7
-PathSEW = 8
-PathSE = 9
-PathSW = 10
-PathS = 11
-PathEW = 12
-PathE = 13
-PathW = 14
-WallNSEW = 15
-wall_map = {
-    (NORTH, SOUTH, EAST, WEST): PathNSEW,
-    (NORTH, EAST, WEST): PathNEW,
-    (SOUTH, EAST, WEST): PathSEW,
-    (EAST, WEST): PathEW,
-    (NORTH, SOUTH, EAST): PathNSE,
-    (NORTH, EAST): PathNE,
-    (SOUTH, EAST): PathSE,
-    (EAST,): PathE,
-    (NORTH, SOUTH, WEST): PathNSW,
-    (NORTH, WEST): PathNW,
-    (SOUTH, WEST): PathSW,
-    (WEST,): PathW,
-    (NORTH, SOUTH): PathNS,
-    (NORTH,): PathN,
-    (SOUTH,): PathS,
-    (): 15
-}
-
-
 class MazeDrawer:
     def __init__(self, maze):
         self.maze = maze
@@ -69,9 +27,8 @@ class MazeDrawer:
             for x in range(self.maze.w):
                 tile = self.maze.tiles[y][x]
                 neighbours = tile.where_path()
-                print(x, y, neighbours)
                 image = self.cell_images[wall_map[neighbours]]
-                self.display_surface.blit(image, (x * CELL_SIZE_SCALED +self.maze_offset_x, y * CELL_SIZE_SCALED + self.maze_offset_y))
+                self.display_surface.blit(image, (x * CELL_SIZE_SCALED + self.maze_offset_x, y * CELL_SIZE_SCALED + self.maze_offset_y))
 
         pygame.display.update()
 
@@ -86,7 +43,7 @@ class MazeDrawer:
 
 
 if __name__ == "__main__":
-    maze = Maze(10, 10)
+    maze = Maze(20, 20)
     maze.generate_maze()
     drawer = MazeDrawer(maze)
     drawer.draw()

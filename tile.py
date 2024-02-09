@@ -9,6 +9,7 @@ class Tile:
 
     def add_neighbour(self, tile):
         nx, ny = tile.x, tile.y
+
         if nx == self.x and ny == self.y - 1:
             direction = NORTH
         elif nx == self.x and ny == self.y + 1:
@@ -41,5 +42,8 @@ class Tile:
                     nx = self.x + i-1
                     ny = self.y + j-1
                     neighbours_position.append((nx, ny))
+                    if nx == self.x and ny == self.y:
+                        print(nx, ny, self.x, self.y)
+                        raise Exception
 
         return neighbours_position

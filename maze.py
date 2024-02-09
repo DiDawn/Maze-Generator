@@ -23,7 +23,6 @@ class Maze:
                 tile = self.tiles[ny][nx]
                 if tile not in self.frontier and tile not in self.maze:
                     self.frontier.append(tile)
-                    tile.add_neighbour(tile)
 
     def get_neighbouring_tiles_in_maze(self, tile):
         neighbouring_tiles = []

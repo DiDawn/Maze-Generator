@@ -9,10 +9,10 @@ PATH = 1
 
 MAZE_SIZE = 15, 15
 
-WINDOW_WIDTH = 1920//1
-WINDOW_HEIGHT = 1080//1
-CELL_SIZE = 96       # cell width/height in pixels in tilesheet
-SCALE_FACTOR = 0.5
+WINDOW_WIDTH = 1920//1.1
+WINDOW_HEIGHT = 1080//1.1
+CELL_SIZE = 96       # cell width/height in pixels in tile sheet
+SCALE_FACTOR = 1
 CELL_SIZE_SCALED = CELL_SIZE * SCALE_FACTOR
 
 PathNSEW = 0
@@ -30,7 +30,7 @@ PathS = 11
 PathEW = 12
 PathW = 13
 PathE = 14
-WallNSEW = 15
+WallNSEW = 16
 wall_map = {
     (NORTH, SOUTH, EAST, WEST): PathNSEW,
     (NORTH, EAST, WEST): PathNEW,
@@ -47,5 +47,5 @@ wall_map = {
     (NORTH, SOUTH): PathNS,
     (NORTH,): PathN,
     (SOUTH,): PathS,
-    (): 15
+    (): WallNSEW
 }

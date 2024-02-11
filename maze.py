@@ -4,11 +4,14 @@ from time import time
 
 
 class Maze:
-    def __init__(self, w, h):
+    def __init__(self, w, h, tiles=None):
         self.w = w
         self.h = h
 
-        self.tiles = [[Tile(x, y) for x in range(w)] for y in range(h)]
+        if tiles:
+            self.tiles = tiles
+        else:
+            self.tiles = [[Tile(x, y) for x in range(w)] for y in range(h)]
         self.maze = []
         self.frontier = []
 

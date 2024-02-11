@@ -10,14 +10,19 @@ class MazeDrawer:
         # open window
         self.display_surface = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         # load tile sheet, and extract the cell images
-        self.tilesheet = pygame.image.load("assets\\MazeTileset.png").convert_alpha()
+        self.tile_sheet = pygame.image.load("assets/MazeTileSet.png").convert_alpha()
         self.cell_images = []
         for y in range(4):
             for x in range(4):
                 rect = (128 * x, 128 * y, CELL_SIZE, CELL_SIZE)
-                image = self.tilesheet.subsurface(rect)
+                image = self.tile_sheet.subsurface(rect)
                 image = pygame.transform.scale_by(image, (SCALE_FACTOR, SCALE_FACTOR))
                 self.cell_images.append(image)
+        # get the last image
+        rect = (128 * 4, 128 * 0, CELL_SIZE, CELL_SIZE)
+        image = self.tile_sheet.subsurface(rect)
+        image = pygame.transform.scale_by(image, (SCALE_FACTOR, SCALE_FACTOR))
+        self.cell_images.append(image)
 
         self.maze_offset_x = (WINDOW_WIDTH - self.maze.w * CELL_SIZE_SCALED) // 2
         self.maze_offset_y = (WINDOW_HEIGHT - self.maze.h * CELL_SIZE_SCALED) // 2
@@ -28,7 +33,8 @@ class MazeDrawer:
                 tile = self.maze.tiles[y][x]
                 neighbours = tile.where_path()
                 image = self.cell_images[wall_map[neighbours]]
-                self.display_surface.blit(image, (x * CELL_SIZE_SCALED + self.maze_offset_x, y * CELL_SIZE_SCALED + self.maze_offset_y))
+                self.display_surface.blit(image, (x * CELL_SIZE_SCALED + self.maze_offset_x,
+                                                  y * CELL_SIZE_SCALED + self.maze_offset_y))
 
         pygame.display.update()
 
@@ -43,8 +49,10 @@ class MazeDrawer:
 
 
 if __name__ == "__main__":
-    maze = Maze(20, 20)
-    maze.generate_maze()
+    # maze = Maze(20, 20)
+    from txt_to_maze_converter import TxtToMazeConverter
+    txtToMazeConverter = TxtToMazeConverter("maze.txt")
+    maze = txtToMazeConverter.convert_txt_to_maze()
     drawer = MazeDrawer(maze)
     drawer.draw()
     drawer.run()

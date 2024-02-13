@@ -27,12 +27,20 @@ class Maze:
                 if tile not in self.frontier and tile not in self.maze:
                     self.frontier.append(tile)
 
-    def get_neighbouring_tiles_in_maze(self, tile):
+    def get_neighbouring_tiles(self, tile):
         neighbouring_tiles = []
         for pos in tile.get_neighbours_position():
             nx, ny = pos
+            if 0 <= nx < self.w and 0 <= ny < self.h:
+                neighbouring_tiles.append(self.tiles[ny][nx])
+
+        return neighbouring_tiles
+
+    def get_neighbouring_tiles_in_maze(self, tile):
+        neighbouring_tiles = []
+        for n_tile in self.get_neighbouring_tiles(tile):
             for maze_tile in self.maze:
-                if (maze_tile.x, maze_tile.y) == (nx, ny):
+                if (maze_tile.x, maze_tile.y) == (n_tile.x, n_tile.y):
                     neighbouring_tiles.append(maze_tile)
 
         return neighbouring_tiles

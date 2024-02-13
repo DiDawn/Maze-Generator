@@ -12,7 +12,7 @@ MAZE_SIZE = 15, 15
 WINDOW_WIDTH = 1920//1.1
 WINDOW_HEIGHT = 1080//1.1
 CELL_SIZE = 96       # cell width/height in pixels in tile sheet
-SCALE_FACTOR = 1
+SCALE_FACTOR = 0.75
 CELL_SIZE_SCALED = CELL_SIZE * SCALE_FACTOR
 
 PathNSEW = 0

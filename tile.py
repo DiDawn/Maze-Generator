@@ -12,17 +12,18 @@ class Tile:
 
     def add_neighbour(self, tile):
         nx, ny = tile.x, tile.y
-
-        if nx == self.x and ny == self.y - 1:
-            direction = NORTH
-        elif nx == self.x and ny == self.y + 1:
-            direction = SOUTH
-        elif nx == self.x - 1 and ny == self.y:
-            direction = WEST
-        else:
-            direction = EAST
-
+        direction = self.get_direction(nx, ny)
         self.neighbours[direction] = PATH
+
+    def get_direction(self, nx, ny):
+        if nx == self.x and ny == self.y - 1:
+            return NORTH
+        elif nx == self.x and ny == self.y + 1:
+            return SOUTH
+        elif nx == self.x - 1 and ny == self.y:
+            return WEST
+        else:
+            return EAST
 
     def where_path(self):
         path = []
@@ -47,3 +48,6 @@ class Tile:
                     neighbours_position.append((nx, ny))
 
         return neighbours_position
+
+    def __repr__(self):
+        return f'{self.x, self.y}'

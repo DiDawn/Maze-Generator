@@ -9,7 +9,7 @@ class TxtToMazeConverter:
         self.filename = filename
         self.wall_char = "#"
         if wall_char:
-            if len(wall_char) < 1:
+            if len(wall_char) == 1:
                 self.wall_char = wall_char
             else:
                 Exception("wall_char must have a length of one")
@@ -113,5 +113,8 @@ class TxtToMazeConverter:
     def convert_txt_to_maze(self):
         tiles = self.convert_txt_to_tiles()
         maze = Maze(self.maze_w - 2, self.maze_h - 2, tiles)
+        for row in tiles:
+            for tile in row:
+                maze.maze.append(tile)
 
         return maze

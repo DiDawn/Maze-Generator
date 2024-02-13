@@ -49,10 +49,11 @@ class MazeDrawer:
 
 
 if __name__ == "__main__":
-    # maze = Maze(20, 20)
-    from txt_to_maze_converter import TxtToMazeConverter
-    txtToMazeConverter = TxtToMazeConverter("maze.txt")
-    maze = txtToMazeConverter.convert_txt_to_maze()
+    maze = Maze(20, 20)
+    maze.generate_maze()
+    # from txt_to_maze_converter import TxtToMazeConverter
+    # txtToMazeConverter = TxtToMazeConverter("maze.txt", wall_char="*")
+    # maze = txtToMazeConverter.convert_txt_to_maze()
     drawer = MazeDrawer(maze)
     drawer.draw()
     drawer.run()

@@ -24,11 +24,8 @@ class DijkstraSolver:
         tile_path = tile.where_path()
         for tile_n in tile_neighbours:
             if tile.get_direction(tile_n.x, tile_n.y) in tile_path:
-                if tile.x == 4 and tile.y == 5:
-                    print("oho")
                 tiles.append(tile_n)
-        if tile.x == 4 and tile.y == 5:
-            print(tile_neighbours, tile_path)
+        
         return tiles
 
     def convert_maze_to_graph(self):
